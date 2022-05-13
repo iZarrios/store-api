@@ -4,7 +4,7 @@ import connectDB from './db/connect.js';
 import productsRouter from './routes/products.js';
 import notFoundMiddlware from './middleware/error-handling.js';
 import routeNotFound from './middleware/not-found.js';
-
+import 'express-async-errors';
 
 dotenv.config();
 const uri = process.env.MONGO_URI;

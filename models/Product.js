@@ -1,18 +1,38 @@
 import mongoose from 'mongoose';
 
-const todoSchema = new mongoose.Schema({
-    title: {
+const productSchema = new mongoose.Schema({
+    name: {
         type: String,
-        required: true
+        required: [true, 'product name must be provided'],
     },
-    desc: {
+    price: {
+        type: Number,
+        required: [true, 'product price must be provided'],
+    },
+    featured: {
+        type: Boolean,
+        default: false,
+    },
+    rating: {
+        type: Number,
+        default: 4.5,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+    },
+    company: {
         type: String,
-        required: true
-    }
-}, { timestamps: true });
+        enum: {
+            values: ['ikea', 'liddy', 'caressa', 'marcos'],
+            message: '{VALUE} is not supported',
+        },
+        // enum: ['ikea', 'liddy', 'caressa', 'marcos'],
+    },
+})
 
-todoSchema.index({ createdAt: -1 }); //descending order
+productSchema.index({ price: 1 }); //descending order
 
-const Todo = mongoose.model('Todo', todoSchema);
+const Product = mongoose.model('Product', productSchema);
 
-export default Todo;
+export default Product;

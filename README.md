@@ -11,6 +11,7 @@ This is a RESTful API for a store using **nodejs, mongdodb and express** as well
 
 ```bash
    ├── index.js
+   ├── loadMockData.js
    ├── package-lock.json
    ├── package.json
    ├── README.md
